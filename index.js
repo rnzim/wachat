@@ -12,13 +12,23 @@ io.on('connect',(socket)=>{
     socket.on('msgs',(dados)=>{
         io.to('room1').emit('msg',(dados))
     })
+   
     //room2
     socket.join('room2')
     socket.on('msg-room2',(dados)=>{
       io.to('room2').emit('msg-room2',(dados))
     })
-
-
+    
+    /*for(let i=0; i<10;i++){
+        socket.join('room'+i)
+        socket.on('msg-room'+i,(dados)=>{
+          io.to('room'+i).emit('msg-room'+i,(dados))
+        })
+    }*/
+      
+     
+  
+    
     socket.on('disconnect',()=>{
         console.log('user: '+socket.id+': desconectou-se')
     })
@@ -38,7 +48,8 @@ app.get('/room2',(req,res)=>{
     res.render('room2.ejs')
 })
 app.post('/create-room',(req,res)=>{
-    var name = req.name
+   
+
 })
 
 http.listen(port,()=>{
