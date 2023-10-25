@@ -1,4 +1,4 @@
-*{
+    *{
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
@@ -14,10 +14,12 @@ header{
     background-color:  #16151D;  
     padding: 10px; 
     margin: auto;
+    
+
 }
 
 #title{
-    font-size: 1.5em; 
+    font-size: 2em; 
     padding: 10px;
     font-weight: bold;
 }
@@ -27,7 +29,7 @@ main{
 }
 input{
     width: 100%; 
-    border: none;
+    border: 1px solid #6c5ce7;
     border-radius: 3px;
     padding: 15px;
     background-color: #24243C;
@@ -36,17 +38,30 @@ input{
  button{
     margin-top:10px;
     border: none;
-    border-radius:10px;
-    padding: 15px;
+    border-radius:7px;
+    padding: 10px;
     color: white;
     background-color: #6c5ce7;
-    font-size: 1.3rem;
+    font-size: 1em;
     
 }
 a{
-    outline: none;
+    text-decoration: none;
+    font-size: 1em;
+    display: block;
+    margin-bottom: 10px;
+    border: 1px solid #6c5ce7;
+    border-radius: 5px;
+    padding: 20px;
+}
+#room-window{
     padding: 10px;
-    background-color: #38387a;
-    border-radius: 8px;
-    border: none;
+   
+    border-radius: 5px;
+}
+#create-room-window{
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    padding: 10px;
 }
