@@ -3,23 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" type="text/css" media="all" />
     <title>room</title>
+    
 </head>
 <body>
-    <h2><span id="roomId"><%= name %></span>  <span id="onlineId">Online 5000</span> </h2>
-  
-    <hr>
+        <header>
+        <h1>  <%= name %></h1>
+       
+   
+    </header>
+
+<main>
+    <h2>chat</h2>
+    <div id="chat-window">
+       <p class="p-msg">zpxp: oie</p>
+    </div>
 
     <input type="text" name="" id="name" placeholder="seu nome">
     <br>
-    <textarea name="" id="msg" cols="30" rows="10" placeholder="conteudo"></textarea>
-    <br>
-    <button type="submit" id="send">enviar</button>
-    <hr>
-    <h5>chat</h5>
-    <div id="chat-window">
 
+    <div id="msg-send">
+      <input name="" id="msg" cols="30" rows="10" placeholder="conteudo"></input>
+    <button type="submit" id="send">Send</button>
     </div>
+
+    
+
+</main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js"></script>
     <script>
         var send = document.getElementById('send')
@@ -35,6 +46,7 @@
         var socket = io(url)
         socket.on('msg-room<%= roomNumber %>',(dados)=>{
             let newmsg = document.createElement('p')
+            newmsg.className = "p-msg"
             newmsg.innerHTML = '<br>'+dados.name+' '+dados.msg
             wchat.appendChild(newmsg)
         })
