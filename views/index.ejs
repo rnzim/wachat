@@ -1,18 +1,25 @@
 <%- include('partials/header.ejs') %>
 <body>
-    <header>
-        <h1 id="title">wachat</h1>
+        <header>
+        <h1 id="title">Wachat</h1>
+        <nav>
+            
+        </nav>
     </header>
     <main>
-    <h3>salas</h3>
+    <div id="create-room-window">
+      <h2>Salas</h2>
+      <button type="submit">Criar</button>
+    </div>
 
-    <hr>
+
+    
     <div id="room-window">
-        
+
+      
     </div>
     
 
-    <hr>
     <form action="/create" method="post">
         <input type="text" name="name">
         <br>
