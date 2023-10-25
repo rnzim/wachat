@@ -10,7 +10,10 @@
     <h3>salas</h3>
 
     <hr>
-    <a href="/room">sala01</a>
+    <div id="room-window">
+        
+    </div>
+    
 
     <hr>
     <form action="/create" method="post">
@@ -18,5 +21,26 @@
         <br>
         <button type="submit">Criar</button>
     </form>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js"></script>
+    <script>
+        var room_window = document.getElementById('room-window')
+        const url = "http://localhost:3000"
+        const socket = io(url)
+        socket.on('allRooms',(allRooms)=>{
+           
+           let i=0
+           console.log(allRooms)
+           allRooms.allr.forEach(rooms=> {
+            console.log(rooms)
+              let a = document.createElement('a')
+              a.href = '/room/'+i
+              a.innerHTML = "<br>"+ allRooms.allRooms[i]
+              i++
+              room_window.append(a)
+           });
+        
+        })
+    </script>
 </body>
 </html>

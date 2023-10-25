@@ -4,54 +4,54 @@ const http = require('http').createServer(app)
 const io = require('socket.io')(http)
 const port = 3000
 
-io.on('connect',(socket)=>{
-    //room1
-    console.log(socket.id)
+var allRooms = ['games','devs','sala18']
 
-    socket.join('room1')
-    socket.on('msgs',(dados)=>{
-        io.to('room1').emit('msg',(dados))
-    })
-   
-    //room2
-    socket.join('room2')
-    socket.on('msg-room2',(dados)=>{
-      io.to('room2').emit('msg-room2',(dados))
-    })
+io.on('connect',(socket)=>{
     
-    /*for(let i=0; i<10;i++){
+    for(let i=0; i<allRooms.length;i++){
         socket.join('room'+i)
+        
         socket.on('msg-room'+i,(dados)=>{
           io.to('room'+i).emit('msg-room'+i,(dados))
+          
         })
-    }*/
-      
-     
-  
+    }
     
+    var rooms = socket.rooms
+    var allr = Array()
+    rooms.forEach(element => {
+        if(element.includes('room')){
+            allr.push({room:element})
+        }
+       
+    });
+    socket.emit('allRooms',({allr,allRooms}))
     socket.on('disconnect',()=>{
         console.log('user: '+socket.id+': desconectou-se')
-    })
+    })   
+    
+    
 })
+
+
 
 
 app.set('view engine','ejs')
 app.use(express.urlencoded({extended:false}))
-app.use(express.json)
+app.use(express.json())
 app.get('/',(req,res)=>{
     res.render('index.ejs')
 })
-app.get('/room',(req,res)=>{
-    res.render('room.ejs')
-})
-app.get('/room2',(req,res)=>{
-    res.render('room2.ejs')
-})
-app.post('/create-room',(req,res)=>{
-   
-
+app.get('/room/:roomNumber',(req,res)=>{
+    var roomNumber = req.params.roomNumber
+    res.render('room.ejs',{roomNumber,name:allRooms[roomNumber]})
 })
 
+app.post('/create',(req,res)=>{
+    var name = req.body.name
+    allRooms.push(name)
+    res.redirect('/')
+})
 http.listen(port,()=>{
     console.log('server running on port:'+port)
 })

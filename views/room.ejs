@@ -6,7 +6,7 @@
     <title>room</title>
 </head>
 <body>
-    <h2>room -00</h2>
+    <h2><span id="roomId"><%= name %></span>  <span id="onlineId">Online 5000</span> </h2>
   
     <hr>
 
@@ -24,15 +24,16 @@
     <script>
         var send = document.getElementById('send')
         var wchat = document.getElementById('chat-window')
+       
         send.addEventListener('click',()=>{
             let name = document.getElementById('name').value
             let msg = document.getElementById('msg').value
-            socket.emit('msgs',({name,msg}))
+            socket.emit('msg-room<%= roomNumber %>',({name,msg}))
             
         })
         const url = 'http://localhost:3000'
         var socket = io(url)
-        socket.on('msg',(dados)=>{
+        socket.on('msg-room<%= roomNumber %>',(dados)=>{
             let newmsg = document.createElement('p')
             newmsg.innerHTML = '<br>'+dados.name+' '+dados.msg
             wchat.appendChild(newmsg)
