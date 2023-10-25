@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="/css/room.css"/>
     <title>room</title>
     
 </head>
@@ -17,7 +17,8 @@
 <main>
     <h2>chat</h2>
     <div id="chat-window">
-       <p class="p-msg">zpxp: oie</p>
+      
+
     </div>
 
     <input type="text" name="" id="name" placeholder="seu nome">
@@ -42,13 +43,16 @@
             socket.emit('msg-room<%= roomNumber %>',({name,msg}))
             
         })
-        const url = 'http://localhost:3000'
+        const url = 'https://chat-rooms-2poe.onrender.com/'
         var socket = io(url)
         socket.on('msg-room<%= roomNumber %>',(dados)=>{
             let newmsg = document.createElement('p')
             newmsg.className = "p-msg"
-            newmsg.innerHTML = '<br>'+dados.name+' '+dados.msg
+            
+            newmsg.innerHTML = dados.name+'-> '+dados.msg
+
             wchat.appendChild(newmsg)
+          
         })
         
     </script>

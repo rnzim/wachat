@@ -56,8 +56,7 @@ a{
     padding: 20px;
 }
 #room-window{
-    padding: 10px;
-   
+    padding: 10px;  
     border-radius: 5px;
 }
 #create-room-window{
@@ -80,6 +79,18 @@ a{
 .p-msg{
     background-color: #6c5ce7;
     padding: 10px;
+    padding-left: 10px;
     width: 50%;
-    border-radius: 20px 0px 0px;
+    border-radius: 20px 0px 15px 0px;
+    margin-bottom: 10px;
+    
+}
+.p-msg-you{
+    background-color: gray;
+    padding: 10px;
+    padding-left: 10px;
+    width: 50%;
+    border-radius: 20px 0px 15px 0px;
+    margin-bottom: 10px;
+    
 }
