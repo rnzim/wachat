@@ -1,5 +1,5 @@
 <%- include('partials/header.ejs') %>
-<body>
+
         <header>
         <h1 id="title">Wachat</h1>
         <nav>
@@ -30,7 +30,7 @@
     <script>
         var room_window = document.getElementById('room-window')
         
-        const url = "https://chat-rooms-2poe.onrender.com/"
+        const url = "http://localhost:3000"
         const socket = io(url)
         socket.on('allRooms',(allRooms)=>{
            
@@ -47,5 +47,4 @@
         
         })
     </script>
-</body>
-</html>
+<%- include('partials/footer.ejs') %>

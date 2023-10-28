@@ -3,7 +3,14 @@ const app = express()
 const http = require('http').createServer(app)
 const io = require('socket.io')(http)
 const port = 3000
+const connection = require('./database/database')
+const User = require('./User/User')
 
+connection.authenticate().then(()=>{
+    console.log('sucess')
+}).catch(e=>{
+    console.log(e)
+})
 var allRooms = ['games','devs','sala18']
 
 io.on('connect',(socket)=>{
@@ -33,9 +40,6 @@ io.on('connect',(socket)=>{
     
 })
 
-
-
-
 app.set('view engine','ejs')
 app.use(express.urlencoded({extended:false}))
 app.use(express.json())
@@ -45,9 +49,11 @@ app.get('/',(req,res)=>{
 })
 app.get('/room/:roomNumber',(req,res)=>{
     var roomNumber = req.params.roomNumber
-    res.render('room.ejs',{roomNumber,name:allRooms[roomNumber]})
+    res.render('room/room.ejs',{roomNumber,name:allRooms[roomNumber]})
 })
-
+app.get('/login',(req,res)=>{
+    res.render('user/login.ejs')
+})
 app.post('/create',(req,res)=>{
     var name = req.body.name
     allRooms.push(name)
